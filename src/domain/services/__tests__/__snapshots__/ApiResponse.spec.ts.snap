@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check api Response service generates an api response with data 1`] = `
+ApiResponseDto {
+  "data": Object {
+    "name": "Entity",
+  },
+  "error": false,
+  "message": undefined,
+  "statusCode": 200,
+}
+`;
+
+exports[`Check api Response service generates an api response with data and options 1`] = `
+ApiResponseDto {
+  "data": Object {
+    "name": "Entity",
+  },
+  "error": true,
+  "message": "Message test",
+  "statusCode": 400,
+}
+`;
+
+exports[`Check api Response service generates an error api response with custom statusCode 1`] = `
+ApiResponseDto {
+  "data": undefined,
+  "error": true,
+  "message": "Message test",
+  "statusCode": 400,
+}
+`;
+
+exports[`Check api Response service generates an error api response with default options 1`] = `
+ApiResponseDto {
+  "data": undefined,
+  "error": true,
+  "message": "Message test",
+  "statusCode": 500,
+}
+`;

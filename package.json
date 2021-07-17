@@ -1,0 +1,57 @@
+{
+  "name": "dailytrends",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register index.ts",
+    "lint": "eslint './src/**/*.{js,ts}' --fix",
+    "build": "tsc && babel . --out-dir build --extensions .ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "class-transformer": "^0.4.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^5.13.2",
+    "winston": "^3.3.3"
+
+  },
+  "main": "app.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.3.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "babel-jest": "^27.0.6",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.1.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.3.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test"
+    }
+  }
+}
