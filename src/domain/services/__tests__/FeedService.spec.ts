@@ -1,15 +1,9 @@
 import FeedService from '@/domain/services/FeedService'
 import FeedModel from "@/domain/models/Feed";
-import { mocked } from "ts-jest/utils";
 
-jest.mock("@/domain/models/Feed")
-
-const mockerFeedModel = mocked(FeedModel);
-
-mockerFeedModel.mockImplementation(() => {
-      return modelMock as any;
-});
-
+const feedMock = { _id: "324ed", site: "elMundo", title: "title", url: "url" }
+const feedService = new FeedService()
+const findSpy = jest.spyOn(feedService, 'find')
 const modelMock = {
  find: jest.fn(() => feedMock),
  deleteMany: jest.fn(),
@@ -19,9 +13,8 @@ const modelMock = {
  updateOne: jest.fn(),
  findById: jest.fn(() => feedMock)
 }
+feedService.model = modelMock as any
 
-const feedMock = { id: "324ed", site: "elMundo", title: "title", url: "url" }
-const feedService = new FeedService()
 
 describe("Feed Service", () => {
   beforeEach(() => {
@@ -31,16 +24,16 @@ describe("Feed Service", () => {
   it('finds a model by site', async () => {
     await feedService.findFeedBySite(feedMock.site)
     
-    expect(mockerFeedModel.find).toHaveBeenNthCalledWith(1, { site: feedMock.site })
+    expect(findSpy).toHaveBeenNthCalledWith(1, { site: feedMock.site })
   })
   it('tries to find a unexisting model', async () => {
-    mockerFeedModel.mockImplementationOnce(() => ({ find: jest.fn(() => null) } as any));
+    feedService.model.find = jest.fn(() => null) 
 
-    expect(await feedService.findFeedBySite(feedMock.site)).toThrow()
+    await expect(feedService.findFeedBySite(feedMock.site)).rejects.toThrow('Feed not exists')
   })
   it('deletes one model by site', async () => {
     await feedService.deleteFeedBySite(feedMock.site)
     
-    expect(mockerFeedModel.deleteMany).toHaveBeenNthCalledWith(1, { site: feedMock.site })
+    expect(feedService.model.deleteMany).toHaveBeenNthCalledWith(1, { site: feedMock.site })
   })
 })

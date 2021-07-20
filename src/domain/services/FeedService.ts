@@ -13,7 +13,7 @@ export default class FeedService extends ModelService<Feed> {
   }
 
   async findFeedBySite(site: String): Promise<any> {
-    const feed = await this.model.find({ site: site });
+    const feed = await this.find({ site: site });
     if (!feed) throw new ErrorApi("Feed not exists", 404);
 
     return feed;
