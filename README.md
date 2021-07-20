@@ -7,8 +7,7 @@ All this using techniques such as webscraping.
 
 # Architecture
 
-[[arch.png]]
-
+![Architecture](https://github.com/IlusionDev/DailyTrends/blob/master/arch.png)
 ### Explanation
 The architecture is divided as follows:
 
@@ -68,3 +67,4 @@ curl --location --request DELETE 'localhost:3000/api/feed/6f7tfyyhjh'
 ````
 
 ## Notes
+All env files are uploaded as just example env files. Modify it for custom values.
