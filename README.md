@@ -4,6 +4,10 @@
 Dailytrends is a project where the objective is to store the news from the newspapers (ElPais and ElMundo) in a database to later be served through an api crud.
 All this using techniques such as webscraping.
 
+# Requeriments
+- MongoDb installed and url added in env file
+- yarn to install dependencies
+- NodeJs 14
 
 # Architecture
 
