@@ -4,7 +4,7 @@ import routerLoader from '@/domain/services/RouterLoader'
 
 jest.mock('path', () => {
   return {
-    resolve: jest.fn(() => "./__tests__/__mocks__"),
+    resolve: jest.fn(() => "./__mocks__"),
   }
 }) 
 
@@ -26,7 +26,7 @@ describe('Router loader tests', () => {
     routerLoader(app)
 
     expect(path.resolve).toHaveBeenNthCalledWith(1, expect.anything(), "../../", "routes")
-    expect(fs.readdirSync).toHaveBeenNthCalledWith(1, "./__tests__/__mocks__")
+    expect(fs.readdirSync).toHaveBeenNthCalledWith(1, "./__mocks__")
     expect(app.use).toHaveBeenNthCalledWith(1, "/main", expect.anything())
   })
 })

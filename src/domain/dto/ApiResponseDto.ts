@@ -3,4 +3,6 @@ export default class ApiResponseDto {
   data: any;
   error: boolean | undefined;
   statusCode?: number;
+  stack?: String;
+  s;
 }

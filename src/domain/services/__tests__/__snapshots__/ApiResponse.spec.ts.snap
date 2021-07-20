@@ -7,6 +7,8 @@ ApiResponseDto {
   },
   "error": false,
   "message": undefined,
+  "s": undefined,
+  "stack": undefined,
   "statusCode": 200,
 }
 `;
@@ -18,6 +20,8 @@ ApiResponseDto {
   },
   "error": true,
   "message": "Message test",
+  "s": undefined,
+  "stack": undefined,
   "statusCode": 400,
 }
 `;
@@ -27,6 +31,8 @@ ApiResponseDto {
   "data": undefined,
   "error": true,
   "message": "Message test",
+  "s": undefined,
+  "stack": undefined,
   "statusCode": 400,
 }
 `;
@@ -36,6 +42,8 @@ ApiResponseDto {
   "data": undefined,
   "error": true,
   "message": "Message test",
+  "s": undefined,
+  "stack": undefined,
   "statusCode": 500,
 }
 `;

@@ -3,5 +3,5 @@ export default interface GenerateApiResponseOptions {
   message?: string;
   sanitize?: any;
   statusCode?: number;
-  stackTrace?: String;
+  stack?: String;
 }

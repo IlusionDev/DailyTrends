@@ -4,7 +4,7 @@ import { plainToClass } from "class-transformer";
 import GenerateApiResponseOptions from "@/domain/services/definitions/GenerateApiResponseOptions";
 import GenerateAndSendErrorReponseOptions from "@/domain/services/definitions/GenerateAndSendErrorReponseOptions";
 import { Response } from "express";
-import { Error } from "mongoose";
+import ErrorApi from "../../global/errors/ErrorApi";
 
 export default class ApiResponseService {
   private req: CRequest;
@@ -31,6 +31,7 @@ export default class ApiResponseService {
     apiResponse.error = options?.error ? options.error : false;
     options?.message ? (apiResponse.message = options?.message) : null;
     apiResponse.statusCode = options?.statusCode || 200;
+    apiResponse.stack = options?.stack;
 
     return apiResponse;
   }
@@ -57,22 +58,25 @@ export default class ApiResponseService {
   }
 
   generateAndSendErrorReponse(
-    error: any,
-    options: GenerateAndSendErrorReponseOptions
+    error: ErrorApi,
+    options?: GenerateAndSendErrorReponseOptions
   ) {
-    const statusCode = options?.statusCode ? options.statusCode : 500;
+    let statusCode: number = error?.statusCode
+      ? error.statusCode
+      : (500 as number);
+    statusCode = options?.statusCode ? options.statusCode : statusCode;
     this.req.logger.error(
-      options.error?.message || options.message,
-      options.error?.stack || ""
+      error?.message || options?.message,
+      error?.stack || ""
     );
-
+    const stack = error.stack;
     return this.res.status(statusCode).send(
       this.generateApiResponse(null, {
         ...options,
         error: true,
-        message: options?.message || options?.error?.message,
+        message: error?.message || options?.error?.message,
         statusCode,
-        stackTrace: error.stack,
+        stack,
       })
     );
   }

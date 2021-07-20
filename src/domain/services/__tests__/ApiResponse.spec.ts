@@ -70,14 +70,15 @@ describe("Check api Response service", () => {
      })
   });
    it("generates an error api response and sends it to client with default options", () => {
-     apiResponse.generateAndSendErrorReponse(true, { error: { stack: 'stack example' } });
+     apiResponse.generateAndSendErrorReponse({ stack: 'stack example', statusCode: 400, message: "test", name: "testName" } );
 
-     expect(res.status).toHaveBeenNthCalledWith(1, 500)
+     expect(res.status).toHaveBeenNthCalledWith(1, 400)
      expect(res.send).toHaveBeenNthCalledWith(1, {
        "data": undefined,
        "error": true,
-       "message": undefined,
-       "statusCode": 500,
+       "message": "test",
+       "statusCode": 400,
+       "stack": 'stack example'
      })
   });
 });
