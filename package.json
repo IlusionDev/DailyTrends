@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=pro ts-node -r tsconfig-paths/register index.ts",
-    "dev": "NODE_ENV=dev ts-node -r tsconfig-paths/register index.ts",
+    "start": "NODE_ENV=pro ts-node -r tsconfig-paths/register ./src/cron/index.ts && NODE_ENV=pro ts-node -r tsconfig-paths/register index.ts",
+    "dev": "NODE_ENV=dev ts-node -r tsconfig-paths/register ./src/cron/index.ts && NODE_ENV=dev ts-node -r tsconfig-paths/register index.ts",
     "lint": "eslint './src/**/*.{js,ts}' --fix",
     "build": "tsc && babel . --out-dir build --extensions .ts",
     "test": "jest --collectCoverage"
