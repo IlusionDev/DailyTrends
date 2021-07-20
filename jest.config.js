@@ -3,14 +3,12 @@ module.exports = {
   testEnvironment: "node",
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "components/**/*.{js,vue}",
+    "**/*.{ts,tsx}",
     "!**/node_modules/**",
-    "!**/vendor/**",
-    "!**/dist/**",
-    "!templates/**"
+    "!**/vendor/**"
   ],
   "modulePathIgnorePatterns": [
-    "<rootDir>/templates/"
+    "<rootDir>/public/"
   ],
   "coverageDirectory": "coverage",
   "moduleNameMapper": {

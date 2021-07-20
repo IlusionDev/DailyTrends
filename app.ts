@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
 import { Request, Response } from "express-serve-static-core";
-dotenv.config({ path: `./env.${process.env.mode}` });
 import logger, { winstonMiddleware } from "@/config/winston";
 import CRequest from "@/global/definitions/CRequest";
 import routerLoader from "@/domain/services/RouterLoader";
@@ -11,7 +9,6 @@ import cookieParser from "cookie-parser";
 import cronLoader from "@/domain/services/CronLoader";
 import ApiResponseService from "@/domain/services/ApiResponse";
 
-cronLoader();
 const app = express();
 
 app.use(express.json());
@@ -38,5 +35,7 @@ app.use(function (err: any, req: Request, res: Response, next: Function) {
     statusCode: 500,
   });
 });
+
+cronLoader();
 
 export default app;
